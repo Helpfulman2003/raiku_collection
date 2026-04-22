@@ -1,0 +1,213 @@
+/* Custom font declarations */
+@font-face {
+  font-family: "ICA Rubrik Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("ICA Rubrik Bold"), url("/fonts/ICARubrikBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Poppins Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Poppins Regular"),
+    url("/fonts/Poppins-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Poppins Bold"), url("/fonts/Poppins-Bold.woff") format("woff");
+}
+/* Main container styles */
+.banner {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 3D slider styles */
+.banner .slider {
+  position: absolute;
+  top: 10%;
+  width: 12.5rem;
+  height: 15.63rem;
+  left: calc(50% - 6.25rem); /* Center the slider */
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  transform: perspective(62.5rem);
+  animation: autoRun 40s linear infinite; /* Apply the rotation animation */
+  z-index: 2;
+}
+
+/* Individual slider item styles */
+.banner .slider .item {
+  position: absolute;
+  inset: 0 0 0 0; /* Shorthand for top, right, bottom, left */
+  /* Calculate the rotation based on the item's position and total quantity */
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+    )
+    translateZ(34.38rem); /* Push the item out in 3D space */
+}
+
+/* Image styles within slider items */
+.banner .slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid rgba(191, 255, 0, 0.4);
+  box-shadow: 0 0 15px rgba(191, 255, 0, 0.3);
+  border-radius: 5px; /* slight rounding */
+}
+
+/* Keyframe animation for auto-rotation */
+@keyframes autoRun {
+  from {
+    transform: perspective(62.5rem) rotateX(-16deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(62.5rem) rotateX(-16deg) rotateY(360deg);
+  }
+}
+
+/* Content section styles */
+.banner .content {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1400px, 100vw); /* Responsive width */
+  height: max-content;
+  padding-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Main heading styles */
+.banner .content h1 {
+  font-family: "ICA Rubrik Bold";
+  font-size: 16em;
+  line-height: 1em;
+  color: #0a0a0a; /* Dark text for neon effect */
+  position: relative;
+  text-shadow: 0 0 20px rgba(191, 255, 0, 0.5); /* Glow behind the text */
+}
+
+/* Create an outline effect for the main heading */
+.banner .content h1::after {
+  position: absolute;
+  inset: 0 0 0 0;
+  content: attr(data-content); /* Use the data-content attribute value */
+  z-index: 2;
+  -webkit-text-stroke: 2px #bfff00; /* Neon green outline */
+  color: transparent; /* Make the text transparent to show only the outline */
+  filter: drop-shadow(0 0 10px #bfff00); /* Glow effect on the stroke */
+}
+
+/* Author section styles */
+.banner .content .author {
+  font-family: "Poppins Bold";
+  text-align: right;
+  max-width: min-content;
+  color: #bfff00; /* Neon green text */
+  text-shadow: 0 0 10px rgba(191, 255, 0, 0.8);
+}
+
+/* Description text styles */
+.banner .content .description {
+  font-family: "Poppins Regular";
+  text-align: right;
+}
+
+/* Author name styles */
+.banner .content h2 {
+  font-size: 3em;
+}
+
+/* Background model image styles */
+.banner .model {
+  background-color: #bfff00; /* Solid neon yellow-green color */
+  -webkit-mask-image: url("/images/model.png");
+  -webkit-mask-size: 40%; /* Scale it down */
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: url("/images/model.png");
+  mask-size: 40%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Behind the text */
+  opacity: 0.2; /* Subtle watermark effect */
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px #bfff00); /* Neon glow to match theme */
+}
+
+
+
+/* Media queries for responsive design */
+@media screen and (max-width: 1023px) {
+  /* Adjust slider size and position for smaller screens */
+  .banner .slider {
+    width: 160px;
+    height: 200px;
+    left: calc(50% - 80px);
+  }
+  
+  /* Adjust the 3D transform for smaller slider size */
+  .banner .slider .item {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+      )
+      translateZ(300px);
+  }
+  
+  /* Adjust heading size and styling for smaller screens */
+  .banner .content h1 {
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 10px 20px #bfff00;
+    font-size: 7em;
+  }
+  
+  /* Adjust author section styling for smaller screens */
+  .banner .content .author {
+    color: #bfff00;
+    padding: 20px;
+    text-shadow: 0 10px 20px #0a0a0a;
+    z-index: 2;
+    max-width: unset;
+    width: 100%;
+    text-align: center;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* Further adjustments for very small screens */
+  .banner .slider {
+    width: 100px;
+    height: 150px;
+    left: calc(50% - 50px);
+  }
+  
+  .banner .slider .item {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+      )
+      translateZ(180px);
+  }
+  
+  .banner .content h1 {
+    font-size: 5em;
+  }
+}

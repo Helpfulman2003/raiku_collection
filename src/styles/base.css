@@ -1,0 +1,48 @@
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set the background for the entire page */
+body {
+  background-color: #0a0a0a; /* Dark background for neon effect */
+  /* Create a grid pattern using repeating linear gradients */
+  background-image: 
+    /* Vertical lines */
+    repeating-linear-gradient(
+      to right,
+      transparent 0 100px,
+      rgba(191, 255, 0, 0.2) 100px 101px
+    ),
+    /* Horizontal lines */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 100px,
+      rgba(191, 255, 0, 0.2) 100px 101px
+    );
+}
+
+
+
+/* Dark vignette effect around the edges */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 20%, #050505 100%);
+  z-index: -1; /* Above WebGL canvas, below CSS content */
+}
+
+/* Styles for the Three.js Canvas Overlay */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Ensure the 3D canvas doesn't block interactions with the carousel */
+  z-index: 100; /* Place it in front of the background, but pointer-events: none allows clicking through */
+}

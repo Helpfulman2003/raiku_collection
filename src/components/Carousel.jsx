@@ -3,7 +3,7 @@ import React from 'react';
 const Carousel = () => {
   return (
     <div className="banner">
-      <div className="slider" style={{ '--quantity': 7 }}>
+      <div className="slider" style={{ '--quantity': 9 }}>
         <div className="item" style={{ '--position': 1 }}>
           <a href="https://raikugame-v2.vercel.app/" target="_blank" rel="noopener noreferrer">
             <img src="/images/raiku1.png" alt="raiku 1" />
@@ -37,6 +37,16 @@ const Carousel = () => {
         <div className="item" style={{ '--position': 7 }}>
           <a href="https://raiku-card-game.vercel.app" target="_blank" rel="noopener noreferrer">
             <img src="/images/raiku7.png" alt="raiku 7" />
+          </a>
+        </div>
+        <div className="item" style={{ '--position': 8 }}>
+          <a href="https://raikugame-v7.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="/images/raiku8.png" alt="raiku 8" />
+          </a>
+        </div>
+        <div className="item" style={{ '--position': 9 }}>
+          <a href="https://raikugame-v8.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="/images/raiku9.png" alt="raiku 9" />
           </a>
         </div>
       </div>
